@@ -5,15 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let prices = document.querySelectorAll('.prix');
     let total = document.querySelector('.total');
 
-    // Fonction pour mettre à jour le total
-    function updateTotal() {
-        let sum = 0;
-        quantities.forEach((qty, index) => {
-            sum += parseInt(qty.textContent) * parseFloat(prices[index].textContent.replace('$', '').trim());
-        });
-        total.textContent += sum.toFixed(2) + ' $'; // Mettre à jour l'affichage du total
-    }
-
     // Ajouter des écouteurs d'événements aux boutons d'ajout
     btnAdd.forEach((button, index) => {
         button.addEventListener('click', () => {
@@ -36,6 +27,18 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTotal();
 });
 
+// Fonction pour mettre à jour le total
+function updateTotal() {
+    let sum = 0;
+    let quantities = document.querySelectorAll('.qte');
+    let prices = document.querySelectorAll('.prix');
+    let total = document.querySelector('.total');
+    quantities.forEach((qty, index) => {
+        sum += parseInt(qty.textContent) * parseFloat(prices[index].textContent.replace('$', '').trim());
+    });
+    total.textContent = sum.toFixed(2) + ' $'; // Mettre à jour l'affichage du total
+}
+
 // Code JS pour supprimer un produit du panier
 let deleteElements = document.querySelectorAll('.supprimer');
 deleteElements.forEach((element, index) => {
@@ -47,9 +50,7 @@ deleteElements.forEach((element, index) => {
     });
 });
 
-//code js pour supprimer un produit du panier
-
-//code js pour liker un produit
+// Code JS pour liker un produit
 let likeElements = document.querySelectorAll('.aimer');
 likeElements.forEach(element => {
     element.addEventListener('click', () => {
@@ -60,7 +61,3 @@ likeElements.forEach(element => {
         }
     });
 });
-
-//
-
-
